@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <EW_ConfigScopeHints>
+            <version>1.0.0</version>
+        </EW_ConfigScopeHints>
+    </modules>
+    <global>
+        <blocks>
+            <ew_configscopehints>
+                <class>EW_ConfigScopeHints_Block</class>
+            </ew_configscopehints>
+
+            <adminhtml>
+                <rewrite>
+                    <system_config_form>EW_ConfigScopeHints_Block_Adminhtml_System_Config_Form</system_config_form>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <helpers>
+            <ew_configscopehints>
+                <class>EW_ConfigScopeHints_Helper</class>
+            </ew_configscopehints>
+        </helpers>
+        <models>
+            <ew_configscopehints>
+                <class>EW_ConfigScopeHints_Model</class>
+            </ew_configscopehints>
+        </models>
+
+        <events>
+            <system_config_form_field_config_before>
+                <observers>
+                    <ew_configscopehints>
+                        <class>ew_configscopehints/observer</class>
+                        <method>addScopeHint</method>
+                    </ew_configscopehints>
+                </observers>
+            </system_config_form_field_config_before>
+        </events>
+    </global>
+</config>
