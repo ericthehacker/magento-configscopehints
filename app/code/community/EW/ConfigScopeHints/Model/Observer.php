@@ -38,21 +38,11 @@ class EW_ConfigScopeHints_Model_Observer
         /* @var $section Mage_Core_Model_Config_Element */
         $section = $observer->getSection();
 
-//        $fieldType = $observer->getFieldType();
-//        $fieldset = $observer->getFieldset();
-//        $configData = $observer->getConfigData();
-//        $configDataObject = $observer->getConfigDataObject();
-//        $scopeLabel = $observer->getScopeLabel();
-
         $scope = $observer->getScope();
         $scopeId = $observer->getScopeId();
 
 
         $path = $section->getName() . '/' . $group->getName() . '/' . $element->getName();
-
-//        if($path != 'general/store_information/address') {
-//            return; //@todo: for testing
-//        }
 
         $overriden = $this->_getHelper()->getOverridenLevels($path, $scope, $scopeId);
 
@@ -61,9 +51,7 @@ class EW_ConfigScopeHints_Model_Observer
         }
 
         $scopeLabel = $config->getScopeLabel();
-        foreach($overriden as $overriddenScope) {
-            $scopeLabel .= "overridden on {$overriddenScope['scope']} id {$overriddenScope['scope_id']}";
-        }
+        $scopeLabel .= $this->_getHelper()->formatOverriddenScopes($overriden);
         $config->setScopeLabel($scopeLabel);
 
         Varien_Profiler::stop(EW_ConfigScopeHints_Helper_Data::PROFILER_KEY);

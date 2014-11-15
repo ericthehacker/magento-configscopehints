@@ -107,8 +107,8 @@ class EW_ConfigScopeHints_Helper_Data extends Mage_Core_Helper_Abstract
                 break;
             case 'default':
                 foreach($tree['websites'] as $websiteId => $website) {
-                    $value = $this->_getConfigValue($path, 'websites', $websiteId);
-                    if($value != $currentValue) {
+                    $websiteValue = $this->_getConfigValue($path, 'websites', $websiteId);
+                    if($websiteValue != $currentValue) {
                         $overridden[] = array(
                             'scope'     => 'website',
                             'scope_id'  => $websiteId
@@ -117,7 +117,7 @@ class EW_ConfigScopeHints_Helper_Data extends Mage_Core_Helper_Abstract
 
                     foreach($website['stores'] as $storeId) {
                         $value = $this->_getConfigValue($path, 'stores', $storeId);
-                        if($value != $currentValue) {
+                        if($value != $currentValue && $value != $websiteValue) {
                             $overridden[] = array(
                                 'scope'     => 'store',
                                 'scope_id'  => $storeId
@@ -129,5 +129,37 @@ class EW_ConfigScopeHints_Helper_Data extends Mage_Core_Helper_Abstract
         }
 
         return $overridden;
+    }
+
+    /**
+     * Format overridden scopes for output
+     *
+     * @param array $overridden
+     * @return string
+     */
+    public function formatOverriddenScopes(array $overridden) {
+        $formatted = '<ul class="overridden-hint-list">';
+
+        foreach($overridden as $overriddenScope) {
+            $scope = $overriddenScope['scope'];
+            $scopeId = $overriddenScope['scope_id'];
+            $scopeLabel = $scopeId;
+            switch($scope) {
+                case 'website':
+                    $scopeLabel = 'website ' . Mage::app()->getWebsite($scopeId)->getName();
+                    break;
+                case 'store':
+                    $store = Mage::app()->getStore($scopeId);
+                    $website = $store->getWebsite();
+                    $scopeLabel = 'store view ' . $website->getName() . ' / ' . $store->getName();
+                    break;
+            }
+
+            $formatted .= "<li>Overridden on $scopeLabel</li>";
+        }
+
+        $formatted .= '</ul>';
+
+        return $formatted;
     }
 }
