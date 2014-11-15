@@ -1,7 +1,7 @@
 # EW_ConfigScopeHints
 
-This is a Magento module to show information in the System Configuration when a field is overridden at a 
-more specific scope, along with information about these scope(s).
+This is a Magento module to show information in the System Configuration when a field is overridden at 
+more specific scope(s), along with information about these scope(s).
 
 ## Installation
 
