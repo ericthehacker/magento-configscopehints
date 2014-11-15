@@ -37,6 +37,16 @@
             </updates>
         </layout>
 
+        <translate>
+            <modules>
+                <EW_ConfigScopeHints>
+                    <files>
+                        <default>EW_ConfigScopeHints.csv</default>
+                    </files>
+                </EW_ConfigScopeHints>
+            </modules>
+        </translate>
+
         <events>
             <system_config_form_field_config_before>
                 <observers>
