@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<jstranslator>
+    <ew_configscopehints_close_title translate="message" module="ew_configscopehints">
+        <message>Click to close</message>
+    </ew_configscopehints_close_title>
+    <ew_configscopehints_expand_title translate="message" module="ew_configscopehints">
+        <message>This setting is overridden at a more specific scope. Click for details.</message>
+    </ew_configscopehints_expand_title>
+</jstranslator>
+

@@ -27,6 +27,15 @@
                 <class>EW_ConfigScopeHints_Model</class>
             </ew_configscopehints>
         </models>
+    </global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <awall module="AW_All">
+                    <file>ew/configscopehints.xml</file>
+                </awall>
+            </updates>
+        </layout>
 
         <events>
             <system_config_form_field_config_before>
@@ -38,5 +47,5 @@
                 </observers>
             </system_config_form_field_config_before>
         </events>
-    </global>
+    </adminhtml>
 </config>

@@ -138,7 +138,8 @@ class EW_ConfigScopeHints_Helper_Data extends Mage_Core_Helper_Abstract
      * @return string
      */
     public function formatOverriddenScopes(array $overridden) {
-        $formatted = '<ul class="overridden-hint-list">';
+        $title = $this->__('This setting is overridden at a more specific scope. Click for details.');
+        $formatted = '<ul class="overridden-hint-list" title="'. $title .'">';
 
         foreach($overridden as $overriddenScope) {
             $scope = $overriddenScope['scope'];
@@ -155,7 +156,7 @@ class EW_ConfigScopeHints_Helper_Data extends Mage_Core_Helper_Abstract
                     break;
             }
 
-            $formatted .= "<li>Overridden on $scopeLabel</li>";
+            $formatted .= "<li class='$scope'>Overridden on $scopeLabel</li>";
         }
 
         $formatted .= '</ul>';

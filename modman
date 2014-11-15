@@ -1,2 +1,4 @@
 app/code/community/EW/ConfigScopeHints
 app/etc/modules/EW_ConfigScopeHints.xml
+app/design/adminhtml/default/default/layout/ew/configscopehints.xml
+skin/adminhtml/default/default/ew/configscopehints

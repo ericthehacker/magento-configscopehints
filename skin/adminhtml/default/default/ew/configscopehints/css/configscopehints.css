@@ -1,0 +1,27 @@
+.overridden-hint-list {
+    display: inline-block;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.overridden-hint-list::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    background-image: url('../../../images/note_msg_icon.gif');
+}
+.overridden-hint-list li {
+    display: none;
+}
+
+/* visible state */
+.overridden-hint-list.visible {
+    display: block;
+}
+.overridden-hint-list.visible::before {
+    display: none;
+}
+.overridden-hint-list.visible li {
+    display: block;
+}
