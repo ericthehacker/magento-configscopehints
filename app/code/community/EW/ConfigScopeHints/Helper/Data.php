@@ -139,7 +139,9 @@ class EW_ConfigScopeHints_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function formatOverriddenScopes(array $overridden) {
         $title = $this->__('This setting is overridden at a more specific scope. Click for details.');
-        $formatted = '<ul class="overridden-hint-list" title="'. $title .'">';
+
+        $formatted = '<a class="overridden-hint-list-toggle" href="#">'. $title .'</a>'.
+                     '<ul class="overridden-hint-list" title="'. $title .'">';
 
         foreach($overridden as $overriddenScope) {
             $scope = $overriddenScope['scope'];
