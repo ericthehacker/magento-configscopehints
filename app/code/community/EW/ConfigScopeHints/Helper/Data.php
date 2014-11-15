@@ -140,21 +140,48 @@ class EW_ConfigScopeHints_Helper_Data extends Mage_Core_Helper_Abstract
     public function formatOverriddenScopes(array $overridden) {
         $title = $this->__('This setting is overridden at a more specific scope. Click for details.');
 
-        $formatted = '<a class="overridden-hint-list-toggle" href="#">'. $title .'</a>'.
-                     '<ul class="overridden-hint-list" title="'. $title .'">';
+        $formatted = '<a class="overridden-hint-list-toggle" title="'. $title .'" href="#">'. $title .'</a>'.
+                     '<ul class="overridden-hint-list">';
 
         foreach($overridden as $overriddenScope) {
             $scope = $overriddenScope['scope'];
             $scopeId = $overriddenScope['scope_id'];
             $scopeLabel = $scopeId;
+
+            $url = '#';
+            $section = Mage::app()->getRequest()->getParam('section'); //grrr.
             switch($scope) {
                 case 'website':
-                    $scopeLabel = 'website ' . Mage::app()->getWebsite($scopeId)->getName();
+                    $url = Mage::getModel('adminhtml/url')->getUrl(
+                        '*/*/*',
+                        array(
+                            'section'=>$section,
+                            'website'=>Mage::app()->getWebsite($scopeId)->getCode()
+                        )
+                    );
+                    $scopeLabel = sprintf(
+                        'website <a href="%s">%s</a>',
+                        $url,
+                        Mage::app()->getWebsite($scopeId)->getName()
+                    );
+
                     break;
                 case 'store':
                     $store = Mage::app()->getStore($scopeId);
                     $website = $store->getWebsite();
-                    $scopeLabel = 'store view ' . $website->getName() . ' / ' . $store->getName();
+                    $url = Mage::getModel('adminhtml/url')->getUrl(
+                        '*/*/*',
+                        array(
+                            'section'   => $section,
+                            'website'   => $website->getCode(),
+                            'store'     => $store->getCode()
+                        )
+                    );
+                    $scopeLabel = sprintf(
+                        'store view <a href="%s">%s</a>',
+                        $url,
+                        $website->getName() . ' / ' . $store->getName()
+                    );
                     break;
             }
 
