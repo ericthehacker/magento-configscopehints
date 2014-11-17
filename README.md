@@ -25,7 +25,7 @@ website level, only overrides below the currently selected website are shown.
 Clicking on the notification bulb displays a detailed list of the exact scope(s) that override the value, 
 with links directly to those scopes.
 
-![Screenshot of system config scope hints module](https://ericwie.se/assets/img/work/config-scope-hints.png)
+![Screenshot of system config scope hints module](https://ericwie.se/assets/img/work/config-scope-hints.png?v=1)
 
 ## Rewrites
 
