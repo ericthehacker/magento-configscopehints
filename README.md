@@ -29,7 +29,7 @@ with links directly to those scopes.
 
 ## Rewrites
 
-I dislike Magento rewrites, and so should you.
+I avoid Magento rewrites, and so should you.
 
 In the interest of full disclosure, this module rewrites `adminhtml/system_config_form` block to alter a single method.
 
