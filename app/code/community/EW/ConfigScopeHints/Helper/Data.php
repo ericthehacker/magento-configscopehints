@@ -61,6 +61,8 @@ class EW_ConfigScopeHints_Helper_Data extends Mage_Core_Helper_Abstract
                 $currentValue = Mage::app()->getWebsite($contextScopeId)->getConfig($path);
                 break;
             case 'default':
+                $currentValue = (string)Mage::getConfig()->getNode('default/' . $path);
+                break;
             case 'stores':
                 $currentValue = Mage::app()->getStore($contextScopeId)->getConfig($path);
                 break;
