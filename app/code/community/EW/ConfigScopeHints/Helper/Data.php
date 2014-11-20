@@ -45,6 +45,24 @@ class EW_ConfigScopeHints_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * Get config node value after processing with backend model
+     *
+     * @param Mage_Core_Model_Config_Element $node
+     * @param $path
+     * @return string
+     */
+    protected function _getProcessedValue(Mage_Core_Model_Config_Element $node, $path) {
+        $value = (string)$node;
+        if (!empty($node['backend_model']) && !empty($value)) {
+            $backend = Mage::getModel((string)$node['backend_model']);
+            $backend->setPath($path)->setValue($value)->afterLoad();
+            $value = $backend->getValue();
+        }
+
+        return $value;
+    }
+
+    /**
      * Get current value by scope and scope ID,
      * or null if none could be found.
      *
@@ -58,10 +76,13 @@ class EW_ConfigScopeHints_Helper_Data extends Mage_Core_Helper_Abstract
         $currentValue = null;
         switch($contextScope) {
             case 'websites':
-                $currentValue = Mage::app()->getWebsite($contextScopeId)->getConfig($path);
+                $code = Mage::app()->getWebsite($contextScopeId)->getCode();
+                $node = Mage::getConfig()->getNode('websites/'.$code.'/'.$path);
+                $currentValue = !$node ? '' : $this->_getProcessedValue($node, $path);
                 break;
             case 'default':
-                $currentValue = (string)Mage::getConfig()->getNode('default/' . $path);
+                $node = Mage::getConfig()->getNode('default/' . $path);
+                $currentValue = !$node ? '' : $this->_getProcessedValue($node, $path);
                 break;
             case 'stores':
                 $currentValue = Mage::app()->getStore($contextScopeId)->getConfig($path);
