@@ -1,0 +1,39 @@
+scope:
+  website:
+    - website_id: 1
+      code: website1
+      name: website 1
+      default_group_id: 1
+    - website_id: 2
+      code: website2
+      name: website 2
+      default_group_id: 2
+  group:
+    - group_id: 1
+      website_id: 1
+      name: store group 1
+      default_store_id: 1
+    - group_id: 2
+      website_id: 2
+      name: store group 2
+      default_store_id: 2
+  store:
+    - store_id: 1
+      website_id: 1
+      group_id: 1
+      code: store1
+      name: store 1
+      is_active: true
+    - store_id: 2
+      website_id: 2
+      group_id: 2
+      code: store2
+      name: store 2
+      is_active: true
+config:
+  default/ew_configscopehints/test/nooverride: default value
+  default/ew_configscopehints/test/websiteoverride: default value
+  websites/website1/ew_configscopehints/test/websiteoverride: website1 value
+  default/ew_configscopehints/test/bothoverride: default value
+  websites/website1/ew_configscopehints/test/bothoverride: website1 value
+  stores/store2/ew_configscopehints/test/bothoverride: store2 value
