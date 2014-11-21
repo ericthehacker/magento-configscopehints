@@ -31,9 +31,9 @@
     <adminhtml>
         <layout>
             <updates>
-                <awall module="AW_All">
+                <ew_configscopehints module="EW_ConfigScopeHints">
                     <file>ew/configscopehints.xml</file>
-                </awall>
+                </ew_configscopehints>
             </updates>
         </layout>
 
@@ -58,4 +58,12 @@
             </system_config_form_field_config_before>
         </events>
     </adminhtml>
+
+    <phpunit>
+        <suite>
+            <modules>
+                <EW_ConfigScopeHints />
+            </modules>
+        </suite>
+    </phpunit>
 </config>

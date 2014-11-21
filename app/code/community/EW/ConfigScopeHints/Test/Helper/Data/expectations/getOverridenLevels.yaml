@@ -1,0 +1,55 @@
+-
+  overriden: false
+  levels:
+-
+  overriden: false
+  levels:
+-
+  overriden: false
+  levels:
+-
+  overriden: false
+  levels:
+-
+  overriden: false
+  levels:
+
+-
+  overriden: true
+  levels:
+    - scope: website
+      scope_id: 1
+-
+  overriden: false
+  levels:
+-
+  overriden: false
+  levels:
+-
+  overriden: false
+  levels:
+-
+  overriden: false
+  levels:
+
+-
+  overriden: true
+  levels:
+    - scope: website
+      scope_id: 1
+    - scope: store
+      scope_id: 2
+-
+  overriden: false
+  levels:
+-
+  overriden: true
+  levels:
+    - scope: store
+      scope_id: 2
+-
+  overriden: false
+  levels:
+-
+  overriden: false
+  levels:
