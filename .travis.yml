@@ -36,6 +36,6 @@ before_script:
   - ../n98-magerun.phar config:set "web/unsecure/base_url" "http://travis.magento.local/"
   - ../modman init
   - ../modman clone https://github.com/EcomDev/EcomDev_PHPUnit.git
-  - ../modman clone https://github.com/ericthehacker/magento-configscopehints.git
+  - ../modman clone https://github.com/ericthehacker/magento-configscopehints.git --branch=${TRAVIS_BRANCH}
 script:
   - phpunit
