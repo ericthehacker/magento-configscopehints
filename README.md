@@ -3,6 +3,12 @@
 This is a Magento module to show information in the System Configuration when a field is overridden at 
 more specific scope(s), along with information about these scope(s).
 
+## Build Status
+
+- Master: [![Master Build Status](https://api.travis-ci.org/ericthehacker/magento-configscopehints.png?branch=master)](https://travis-ci.org/ericthehacker/magento-configscopehints)
+- Develop: [![Develop Build Status](https://api.travis-ci.org/ericthehacker/magento-configscopehints.png?branch=develop)](https://travis-ci.org/ericthehacker/magento-configscopehints)
+
+
 ## Installation
 
 Install via [modman](https://github.com/colinmollenhour/modman):
