@@ -26,6 +26,8 @@ class EW_ConfigScopeHints_Block_Adminhtml_System_Config_Form extends Mage_Adminh
             }
 
             foreach ($elements as $element) {
+                $inherit = null;
+
                 if (!$this->_canShowField($element)) {
                     continue;
                 }
