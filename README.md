@@ -40,3 +40,7 @@ I avoid Magento rewrites, and so should you.
 In the interest of full disclosure, this module rewrites `adminhtml/system_config_form` block to alter a single method.
 
 This method unfortunately does not dispatch any events, so I feel that this rewrite was necessary.
+
+## Compatibility
+
+This module has been tested on CE 1.9.0 and greater, and EE 1.14.0 and greater. Due to significant changes in the rewritten block in earlier versions, they can have varying degrees of compatibility. If you have tried this module on an earlier version, I'd appreciate any feedback on the compatibility.
