@@ -28,9 +28,11 @@ class EW_ConfigScopeHints_Block_Adminhtml_System_Config_Form extends Mage_Adminh
             foreach ($elements as $element) {
                 $inherit = null;
 
-                if (!$this->_canShowField($element)) {
-                    continue;
-                }
+                //## BEGIN EDIT: handle fields which are not visible better ##
+//                if (!$this->_canShowField($element)) {
+//                    continue;
+//                }
+                //## END EDIT ##
 
                 if ((string)$element->getAttribute('type') == 'group') {
                     $this->_initGroup($fieldset->getForm(), $element, $section, $fieldset);
@@ -190,7 +192,8 @@ class EW_ConfigScopeHints_Block_Adminhtml_System_Config_Form extends Mage_Adminh
                         'scope_id'      => $this->getScopeId(),
                         'scope_label'   => $this->getScopeLabel($element),
                         'config_data'   => $this->_configData,
-                        'config_data_object' => $this->_configDataObject
+                        'config_data_object' => $this->_configDataObject,
+                        'can_show'      => $this->_canShowField($element)
                     )
                 );
 

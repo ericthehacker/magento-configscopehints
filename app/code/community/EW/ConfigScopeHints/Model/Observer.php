@@ -21,7 +21,44 @@ class EW_ConfigScopeHints_Model_Observer
     }
 
     /**
-     * Add scope hint to system config elements
+     * Add not visible at this scope hint
+     *
+     * @param Varien_Object $config
+     * @param $fieldNotVisible
+     */
+    protected function _addVisibilityHint(Varien_Object $config, $fieldNotVisible) {
+        if(!$fieldNotVisible) {
+            return;
+        }
+
+        $newClass = trim($config->getClass() . ' not-visible');
+        $newComment = '<em>' . $this->_getHelper()->__('This config field cannot be set at this scope.') . '</em>';
+
+        $config->setComment($newComment);
+        $config->setClass($newClass);
+        $config->setDisabled(true);
+    }
+
+    /**
+     * Add overridden at more specific scope hint
+     *
+     * @param Varien_Object $config
+     * @param array $overriden
+     */
+    protected function _addOverriddenHint(Varien_Object $config, array $overriden) {
+        if(empty($overriden)) {
+            return;
+        }
+
+        $scopeLabel = $config->getScopeLabel();
+        $scopeLabel .= $this->_getHelper()->formatOverriddenScopes($overriden);
+        $config->setScopeLabel($scopeLabel);
+
+        Varien_Profiler::stop(EW_ConfigScopeHints_Helper_Data::PROFILER_KEY);
+    }
+
+    /**
+     * Add config hints to system config elements
      * Observes: system_config_form_field_config_before
      *
      * @param Varien_Event_Observer $observer
@@ -41,19 +78,11 @@ class EW_ConfigScopeHints_Model_Observer
         $scope = $observer->getScope();
         $scopeId = $observer->getScopeId();
 
-
         $path = $section->getName() . '/' . $group->getName() . '/' . $element->getName();
-
         $overriden = $this->_getHelper()->getOverridenLevels($path, $scope, $scopeId);
+        $fieldNotVisible = !(bool)$observer->getCanShow();
 
-        if(empty($overriden)) {
-            return;
-        }
-
-        $scopeLabel = $config->getScopeLabel();
-        $scopeLabel .= $this->_getHelper()->formatOverriddenScopes($overriden);
-        $config->setScopeLabel($scopeLabel);
-
-        Varien_Profiler::stop(EW_ConfigScopeHints_Helper_Data::PROFILER_KEY);
+        $this->_addVisibilityHint($config, $fieldNotVisible);
+        $this->_addOverriddenHint($config, $overriden);
     }
 }
