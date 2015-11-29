@@ -26,13 +26,19 @@ class EW_ConfigScopeHints_Model_Observer
      * @param Varien_Object $config
      * @param $fieldNotVisible
      */
-    protected function _addVisibilityHint(Varien_Object $config, $fieldNotVisible) {
+    protected function _addVisibilityHint(Varien_Object $config, Mage_Core_Model_Config_Element $element, $fieldNotVisible) {
         if(!$fieldNotVisible) {
             return;
         }
 
         $newClass = trim($config->getClass() . ' not-visible');
         $newComment = '<em>' . $this->_getHelper()->__('This config field cannot be set at this scope.') . '</em>';
+
+        $ifModuleEnabled = trim((string)$element->if_module_enabled);
+        if ($ifModuleEnabled && !Mage::helper('Core')->isModuleEnabled($ifModuleEnabled)) {
+            // JK! field not visible because required module disabled
+            $newComment = '<em>' . $this->_getHelper()->__('This field belongs to %s, which is disabled.', $ifModuleEnabled) . '</em>';
+        }
 
         $config->setComment($newComment);
         $config->setClass($newClass);
@@ -82,7 +88,7 @@ class EW_ConfigScopeHints_Model_Observer
         $overriden = $this->_getHelper()->getOverridenLevels($path, $scope, $scopeId);
         $fieldNotVisible = !(bool)$observer->getCanShow();
 
-        $this->_addVisibilityHint($config, $fieldNotVisible);
+        $this->_addVisibilityHint($config, $element, $fieldNotVisible);
         $this->_addOverriddenHint($config, $overriden);
     }
 }
