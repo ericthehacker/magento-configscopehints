@@ -1,2 +1,4 @@
 "Click to close","Haga clic para cerrar"
 "This setting is overridden at a more specific scope. Click for details.","Este ajuste se anula en un ámbito más específico. Haga clic para obtener más información."
+"This config field cannot be set at this scope.","Este campo de configuración no se puede establecer en este ámbito."
+"This field belongs to %s, which is disabled.","Este campo pertenece a %s, que está desactivado ."
