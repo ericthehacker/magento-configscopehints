@@ -59,8 +59,6 @@ class EW_ConfigScopeHints_Model_Observer
         $scopeLabel = $config->getScopeLabel();
         $scopeLabel .= $this->_getHelper()->formatOverriddenScopes($overriden);
         $config->setScopeLabel($scopeLabel);
-
-        Varien_Profiler::stop(EW_ConfigScopeHints_Helper_Data::PROFILER_KEY);
     }
 
     /**
@@ -70,8 +68,6 @@ class EW_ConfigScopeHints_Model_Observer
      * @param Varien_Event_Observer $observer
      */
     public function addScopeHint(Varien_Event_Observer $observer) {
-        Varien_Profiler::start(EW_ConfigScopeHints_Helper_Data::PROFILER_KEY);
-
         /* @var $config Varien_Object */
         $config = $observer->getConfig();
         /* @var $element Mage_Core_Model_Config_Element */
