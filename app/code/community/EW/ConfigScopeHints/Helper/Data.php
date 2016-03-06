@@ -85,7 +85,9 @@ class EW_ConfigScopeHints_Helper_Data extends Mage_Core_Helper_Abstract
                 $currentValue = !$node ? '' : $this->_getProcessedValue($node, $path);
                 break;
             case 'stores':
-                $currentValue = Mage::app()->getStore($contextScopeId)->getConfig($path);
+                $code = Mage::app()->getStore($contextScopeId)->getCode();
+                $node = Mage::getConfig()->getNode('stores/' . $code . '/' . $path);
+                $currentValue = !$node ? '' : $this->_getProcessedValue($node, $path);
                 break;
         }
 
